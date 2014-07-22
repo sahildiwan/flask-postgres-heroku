@@ -1,0 +1,34 @@
+html,body {
+  height:100%;
+}
+
+h1 {
+  font-family: Arial,sans-serif
+  font-size:80px;
+  color:#DDCCEE;
+}
+
+.lead {
+	color:#DDCCEE;
+}
+
+
+/* Custom container */
+.container-full {
+  margin: 0 auto;
+  width: 100%;
+  min-height:100%;
+  background-color:#110022;
+  color:#eee;
+  overflow:hidden;
+}
+
+.container-full a {
+  color:#efefef;
+  text-decoration:none;
+}
+
+.v-center {
+  margin-top:7%;
+}
+  
