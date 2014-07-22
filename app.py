@@ -1,14 +1,13 @@
-#import os
-
 from flask import Flask, render_template, request
-#from flask.ext.heroku import Heroku
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
-#heroku = Heroku(app)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://localhost/pre-registration'
 db = SQLAlchemy(app)
 
+# Create our database model
 class User(db.Model):
+    __tablename__ = "users"
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True)
 
@@ -18,12 +17,14 @@ class User(db.Model):
     def __repr__(self):
         return '<E-mail %r>' % self.email
 
+# Set "homepage" to index.html
 @app.route('/')
 def index():
     return render_template('index.html')
 
-@app.route('/invitation', methods=['POST'])
-def invite():
+# Save e-mail to database and send to success page
+@app.route('/prereg', methods=['POST'])
+def prereg():
     email = None
     if request.method == 'POST':
         email = request.form['email']
